@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { $ } from 'protractor';
 
 @Component({
   selector: 'app-data',
@@ -13,3 +14,7 @@ export class DataComponent implements OnInit {
   }
 
 }
+
+$('#myModal').on('shown.bs.modal', function() {
+  $('#myInput').trigger('focus');
+});
