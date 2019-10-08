@@ -30,6 +30,9 @@ footer{
 .post{
     border: 1px solid black;
     display: flex;
+    height: auto;
+    padding: 10px 10px;
+    margin-top: 15px;
 }
 .content{
     width: 80%;
@@ -42,6 +45,10 @@ footer{
     align-items: center;
     padding-top: 35px;
 }
+.datePost span{
+    margin-left: 5px;
+    font-size: 20px;
+}
 table{
     width: 80%;
     margin: 15px auto;
@@ -52,4 +59,8 @@ table{
 }
 .author{
     color: grey;
+}
+.post button{
+    margin-left: 10px;
+    margin-top: 15px;
 }

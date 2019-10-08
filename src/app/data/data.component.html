@@ -2,7 +2,7 @@
   <div class="header">
     <div class="logo">Angular blog</div>
     <div class="buttonsHeader">
-      <input class="btn btn-primary btn-warning" type="submit" value="Add post" data-toggle="modal"
+      <input class="btn btn-primary btn-warning" *ngIf="trueLogin" type="submit" value="Add post" data-toggle="modal"
         data-target="#addPostModal">
       <input class="btn btn-primary bg-success" type="button" value="Sign In" data-toggle="modal"
         data-target="#signInModal">
@@ -10,10 +10,13 @@
         data-target="#signUpModal">
     </div>
   </div>
+
+
+
   <div class="main">
     <table>
       <tbody>
-        <tr class="post" *ngFor="let post of posts; let i = index" >
+        <tr class="post" *ngFor="let post of posts; let i = index">
           <div class="content">
             <div class="title">{{post.title}}</div>
             <div class="author">
@@ -22,7 +25,16 @@
             <div class="text">{{post.text}}</div>
 
           </div>
-          <div class="time">29.05.20458</div>
+          <div class="time">
+            <div class="datePost"> 
+              <img src="assets\images\clock.png" alt="">
+              <span>{{date}}</span>
+            </div>
+            <div>
+              <button type="button" class="btn btn-warning">Edite</button>
+              <button type="button" class="btn btn-danger">Delete</button>
+            </div>
+          </div>
         </tr>
       </tbody>
     </table>
@@ -67,7 +79,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="validUser()">Submit</button>
       </div>
     </div>
   </div>
@@ -86,26 +98,27 @@
       </div>
       <div class="modal-body">
         <form>
-            <div class="form-group">
-                <label for="exampleInputUserName">User name</label>
-                <input type="text" [(ngModel)]="userName" name="userName" class="form-control" id="exampleInputUserName" aria-describedby="emailHelp"
-                  placeholder="Enter name">
-              </div>
+          <div class="form-group">
+            <label for="exampleInputUserName">User name</label>
+            <input type="text" [(ngModel)]="userName" name="userName" class="form-control" id="exampleInputUserName"
+              aria-describedby="emailHelp" placeholder="Enter name">
+          </div>
           <div class="form-group">
             <label for="exampleInputEmail2">Email address</label>
-            <input type="email" [(ngModel)]="userEmail" name="userEmail" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp"
-              placeholder="Enter email">
+            <input type="email" [(ngModel)]="userEmail" name="userEmail" class="form-control" id="exampleInputEmail2"
+              aria-describedby="emailHelp" placeholder="Enter email">
             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
-            <input type="password" [(ngModel)]="userPassword" name="userPassword" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            <input type="password" [(ngModel)]="userPassword" name="userPassword" class="form-control"
+              id="exampleInputPassword1" placeholder="Password">
           </div>
         </form>
       </div>
       <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="createNewUser()">Submit</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="createNewUser()">Submit</button>
       </div>
     </div>
   </div>
@@ -123,21 +136,23 @@
         </button>
       </div>
       <div class="modal-body">
-          <form>
-              <div class="form-group">
-                <label for="exampleFormControlInput1">Title:</label>
-                <input type="text" [(ngModel)]="title" name="title" class="form-control" id="exampleFormControlInput1" placeholder="title for post">
-              </div>
-    
-              <div class="form-group">
-                <label for="exampleFormControlTextarea1">Text:</label>
-                <textarea class="form-control" [(ngModel)]="text" name="text" id="exampleFormControlTextarea1" rows="3"></textarea>
-              </div>
-            </form>
+        <form>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Title:</label>
+            <input type="text" [(ngModel)]="title" name="title" class="form-control" id="exampleFormControlInput1"
+              placeholder="title for post">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Text:</label>
+            <textarea class="form-control" [(ngModel)]="text" name="text" id="exampleFormControlTextarea1"
+              rows="3"></textarea>
+          </div>
+        </form>
       </div>
       <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addPost()">Post</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addPost()">Post</button>
       </div>
     </div>
   </div>

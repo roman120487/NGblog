@@ -12,10 +12,12 @@ export class DataComponent implements OnInit {
   text: string;
   id: number;
   posts: Array<any>;
-  users: Array<object>;
+  users: Array<any>;
   userName: string;
   userEmail: string;
   userPassword: string;
+  date: any;
+  trueLogin: boolean;
 
   constructor() {
     this.posts = [];
@@ -32,10 +34,13 @@ export class DataComponent implements OnInit {
     }
     this.posts.push(newPost)
     console.log(this.posts);
+
+    this.date = new Date();
+    this.date = `${this.date.getHours()}:${this.date.getMinutes()}, ${this.date.getDate()}.${this.date.getMonth()+1}.${this.date.getFullYear()} `
   }
 
-  createNewUser():void{
-    const newUser: IUser = new User (1, this.userName,this.userEmail, this.userPassword);
+  createNewUser(): void {
+    const newUser: IUser = new User(1, this.userName, this.userEmail, this.userPassword);
     if (this.users.length > 0) {
       newUser.id = this.users.slice(-1)[0].id + 1;
     }
@@ -44,7 +49,25 @@ export class DataComponent implements OnInit {
     this.userName = '';
     this.userPassword = '';
     console.log(this.users);
+  }
+
+  validUser(): void{
+
+    // var array = [1, 2, 3, 4, 5];
+
+    // var even = function(element) {
+    //   // checks whether an element is even
+    //   return element % 2 === 0;
+    // };
     
+    // console.log(array.some(even));
+    // // expected output: true
+    
+
+
+
+
+    this.trueLogin = true;
   }
 
 }
