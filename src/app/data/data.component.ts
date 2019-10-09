@@ -20,9 +20,13 @@ export class DataComponent implements OnInit {
   passValid: string;
   date: any;
   validationdUser: boolean;
+  index: number;
 
   invalidLogin: boolean;
   isEmptyPlace: boolean;
+
+  titleEdite: string;
+  textEdite: string;
 
   constructor() {
     this.posts = [];
@@ -62,7 +66,7 @@ export class DataComponent implements OnInit {
     if (this.emailValid == '' && this.passValid == '') {
       this.isEmptyPlace = true;
     }
-    else{
+    else {
       this.isEmptyPlace = false;
     }
 
@@ -77,6 +81,29 @@ export class DataComponent implements OnInit {
     this.author = authorTemp;
   }
 
+  signOut(): void {
+    this.validationdUser = false;
+  }
+
+  deletePost(post, i): void {
+    if (this.author == post.author) {
+      this.posts.splice(i, 1);
+    }
+  }
+
+  editePost(post, i): void {
+    if (this.author == post.author) {
+      this.titleEdite = post.title;
+      this.textEdite = post.text;
+      this.index = i;
+      console.log(post);
+    }
+  }
+
+  postEditeredPost(): void {
+      this.posts[this.index].title = this.titleEdite;
+      this.posts[this.index].text = this.textEdite;
+    }
 }
 
 interface IPost {

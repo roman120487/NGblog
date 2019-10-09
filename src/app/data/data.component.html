@@ -6,8 +6,9 @@
         data-target="#addPostModal">
       <input class="btn btn-primary bg-success" type="button" value="Sign In" data-toggle="modal"
         data-target="#signInModal">
-      <input class="btn btn-primary bg-secondary" type="submit" value="Sign Up" data-toggle="modal"
+      <input class="btn btn-primary bg-secondary" *ngIf="!validationdUser" type="submit" value="Sign Up" data-toggle="modal"
         data-target="#signUpModal">
+        <input class="btn btn-primary bg-secondary" *ngIf="validationdUser" (click)="signOut()" type="submit" value="Sign Out">
     </div>
   </div>
 
@@ -30,9 +31,10 @@
               <img src="assets\images\clock.png" alt="">
               <span>{{date}}</span>
             </div>
-            <div>
-              <button type="button" class="btn btn-warning">Edite</button>
-              <button type="button" class="btn btn-danger">Delete</button>
+            <div *ngIf="validationdUser">
+              <button type="button"  class="btn btn-warning" (click)="editePost(post,i)" data-toggle="modal"
+              data-target="#editePostModal">Edite</button>
+              <button type="button" class="btn btn-danger" (click)="deletePost(post,i)">Delete</button>
             </div>
           </div>
         </tr>
@@ -160,4 +162,39 @@
   </div>
 </div>
 <!--  -->
+
+<!---------------------------------------------------------- Modal Edite Post --------------------->
+<div class="modal" tabindex="-1" role="dialog" id="editePostModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edite post</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <!-- <span aria-hidden="true">&times;</span> -->
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Title:</label>
+            <input type="text" [(ngModel)]="titleEdite" name="titleEdite" class="form-control" id="exampleFormControlInput1"
+              placeholder="title for post">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Text:</label>
+            <textarea class="form-control" [(ngModel)]="textEdite" name="textEdite" id="exampleFormControlTextarea1"
+              rows="3"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="postEditeredPost()">Post</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--  -->
+
 <!-- ------------------------------------------------------------------------------------------------ -->
