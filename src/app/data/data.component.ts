@@ -36,7 +36,8 @@ export class DataComponent implements OnInit {
     console.log(this.posts);
 
     this.date = new Date();
-    this.date = `${this.date.getHours()}:${this.date.getMinutes()}, ${this.date.getDate()}.${this.date.getMonth()+1}.${this.date.getFullYear()} `
+    // tslint:disable-next-line: max-line-length
+    this.date = `${this.date.getHours()}:${this.date.getMinutes()}, ${this.date.getDate()}.${this.date.getMonth() + 1}.${this.date.getFullYear()} `;
   }
 
   createNewUser(): void {
@@ -51,7 +52,7 @@ export class DataComponent implements OnInit {
     console.log(this.users);
   }
 
-  validUser(): void{
+  validUser(): void {
 
     // var array = [1, 2, 3, 4, 5];
 
@@ -59,10 +60,10 @@ export class DataComponent implements OnInit {
     //   // checks whether an element is even
     //   return element % 2 === 0;
     // };
-    
+
     // console.log(array.some(even));
     // // expected output: true
-    
+
 
 
 
