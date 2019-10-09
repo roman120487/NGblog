@@ -1,58 +1,161 @@
 <div class="containerBlog">
-    <div class="header">
-        <div class="logo">Angular blog</div>
-        <div class="buttonsHeader">
-            <input class="btn btn-primary btn-warning" type="submit" value="Add post">
-            <input class="btn btn-primary bg-success" type="button" value="Sign In">
-            <input class="btn btn-primary bg-secondary" type="submit" value="Sign Up">
-        </div>
+  <div class="header">
+    <div class="logo">Angular blog</div>
+    <div class="buttonsHeader">
+      <input class="btn btn-primary btn-warning" *ngIf="trueLogin" type="submit" value="Add post" data-toggle="modal"
+        data-target="#addPostModal">
+      <input class="btn btn-primary bg-success" type="button" value="Sign In" data-toggle="modal"
+        data-target="#signInModal">
+      <input class="btn btn-primary bg-secondary" type="submit" value="Sign Up" data-toggle="modal"
+        data-target="#signUpModal">
     </div>
-    <div class="main">
-        <table>
-            <tbody>
-                <tr class="post">
-                    <div class="content">
-                        <div class="title">First blog</div>
-                        <div class="author">
-                            <p>Posted by: Roman</p>
-                        </div>
-                        <div class="text"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam possimus unde
-                            illo ratione iusto qui vitae, optio ipsum reprehenderit, quod minus est veniam libero
-                            consequatur excepturi quaerat mollitia dolorum quis!</div>
-
-                    </div>
-                    <div class="time">29.05.20458</div>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <!-- <div class="footer">Footer</div> -->
-    <footer>Footer</footer>
-</div>
-
-<!-- Modal Sign In -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Launch demo modal
-      </button>
+  </div>
 
 
-<div class="modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Modal title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+
+  <div class="main">
+    <table>
+      <tbody>
+        <tr class="post" *ngFor="let post of posts; let i = index">
+          <div class="content">
+            <div class="title">{{post.title}}</div>
+            <div class="author">
+              <p>Posted by: {{post.author}}</p>
             </div>
-            <div class="modal-body">
-              <p>Modal body text goes here.</p>
+            <div class="text">{{post.text}}</div>
+
+          </div>
+          <div class="time">
+            <div class="datePost"> 
+              <img src="assets\images\clock.png" alt="">
+              <span>{{date}}</span>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+            <div>
+              <button type="button" class="btn btn-warning">Edite</button>
+              <button type="button" class="btn btn-danger">Delete</button>
             </div>
           </div>
-        </div>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- <div class="footer">Footer</div> -->
+  <footer>Footer</footer>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!--------------------------------------------- MODAL WONDOW ----------------------------------------------->
+<!------------------------------------------------------------- Modal Sign In ------------------------->
+<div class="modal" tabindex="-1" role="dialog" id="signInModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Sign In</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+              placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="validUser()">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
 <!--  -->
+
+<!-------------------------------------------------------------- Modal Sign Up ----------------------->
+<div class="modal" tabindex="-1" role="dialog" id="signUpModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Sign Up</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="exampleInputUserName">User name</label>
+            <input type="text" [(ngModel)]="userName" name="userName" class="form-control" id="exampleInputUserName"
+              aria-describedby="emailHelp" placeholder="Enter name">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail2">Email address</label>
+            <input type="email" [(ngModel)]="userEmail" name="userEmail" class="form-control" id="exampleInputEmail2"
+              aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" [(ngModel)]="userPassword" name="userPassword" class="form-control"
+              id="exampleInputPassword1" placeholder="Password">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="createNewUser()">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--  -->
+
+<!---------------------------------------------------------- Modal Add Post --------------------->
+<div class="modal" tabindex="-1" role="dialog" id="addPostModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add post</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <!-- <span aria-hidden="true">&times;</span> -->
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Title:</label>
+            <input type="text" [(ngModel)]="title" name="title" class="form-control" id="exampleFormControlInput1"
+              placeholder="title for post">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Text:</label>
+            <textarea class="form-control" [(ngModel)]="text" name="text" id="exampleFormControlTextarea1"
+              rows="3"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addPost()">Post</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--  -->
+<!-- ------------------------------------------------------------------------------------------------ -->

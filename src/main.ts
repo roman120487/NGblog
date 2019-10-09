@@ -11,10 +11,5 @@ if (environment.production) {
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
 
-// tslint:disable-next-line: only-arrow-functions
-// $(function() {
-//   // tslint:disable-next-line: only-arrow-functions
-//   $('#myModal').on('shown.bs.modal', function() {
-//     $('#myInput').trigger('focus');
-//   });
-// });
+
+  
