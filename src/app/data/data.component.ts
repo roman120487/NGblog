@@ -16,8 +16,10 @@ export class DataComponent implements OnInit {
   userName: string;
   userEmail: string;
   userPassword: string;
+  emailValid: string;
+  passValid: string;
   date: any;
-  trueLogin: boolean;
+  validationdUser: boolean;
 
   constructor() {
     this.posts = [];
@@ -49,27 +51,32 @@ export class DataComponent implements OnInit {
     this.userEmail = '';
     this.userName = '';
     this.userPassword = '';
-    console.log(this.users);
+    // console.log(this.users);
   }
+
 
   validUser(): void {
+    const email = this.emailValid;
+    const pass = this.passValid;
+    // tslint:disable-next-line: only-arrow-functions
+    this.validationdUser = this.users.some(function (e: any): boolean {
+      return e.userEmail === email && e.userPassword === pass;
+    });
+    console.log(this.validationdUser);
+    // this.author = 
+    
 
-    // var array = [1, 2, 3, 4, 5];
-
-    // var even = function(element) {
-    //   // checks whether an element is even
-    //   return element % 2 === 0;
-    // };
-
-    // console.log(array.some(even));
-    // // expected output: true
-
-
-
-
-
-    this.trueLogin = true;
   }
+  //     var array = [1, 2, 3, 4, 5];
+
+  // var even = function (element) {
+  //   // checks whether an element is even
+  //   return element % 2 === 0;
+  // };
+
+  // console.log(array.some(even));
+  // // // expected output: true
+
 
 }
 
