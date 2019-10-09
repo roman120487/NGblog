@@ -76,11 +76,12 @@
             <label for="exampleInputPassword1">Password</label>
             <input type="password" [(ngModel)]="passValid" name="passValid" class="form-control" id="exampleInputPassword1" placeholder="Password">
           </div>
+          <div class="emptyPlace" *ngIf="isEmptyPlace">Some input is empty</div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="validUser()">Submit</button>
+        <button type="button" class="btn btn-primary" (click)="validUser()">Submit</button>
       </div>
     </div>
   </div>
